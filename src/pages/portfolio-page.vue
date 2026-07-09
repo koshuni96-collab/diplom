@@ -404,13 +404,13 @@ export default {
 }
 
 .privacy-link {
-  color: #4a6cf7;
+  color: #c6c9d3;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .privacy-link:hover {
-  color: #3a5cd7;
+  color: #b5b7bf;
   text-decoration: underline;
 }
 
