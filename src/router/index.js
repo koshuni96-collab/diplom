@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomePage from '@/pages/home-page.vue'
-import PortfolioPage from '@/pages/portfolio-page.vue'
-import TariffsPage from '@/pages/tariffs-page.vue'
-import ContactPage from '@/pages/contact-page.vue'
+import HomePage from '@/pages/HomePage.vue'
+import PortfolioPage from '@/pages/PortfolioPage.vue'
+import TariffsPage from '@/pages/TariffsPage.vue'
+import ContactPage from '@/pages/ContactPage.vue'
 
 const routes = [
   {
@@ -25,16 +25,16 @@ const routes = [
     name: 'Contact',
     component: ContactPage
   },
-  // 👇 НОВАЯ СТРАНИЦА ДЕТАЛЬНОГО ТАРИФА
+  
   {
     path: '/tariff-detail',
     name: 'TariffDetail',
-    component: () => import('@/pages/tariff-detail.vue')
+    component: () => import('@/pages/TariffDetail.vue')
   },
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
-    component: () => import('@/pages/not-found.vue')
+    component: () => import('@/pages/NotFound.vue')
   }
 ]
 

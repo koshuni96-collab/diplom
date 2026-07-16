@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import HeaderComponent from '@/components/header.vue'
-import TarifComponent from '@/components/tarif.vue'
-import FooterComponent from '@/components/footer.vue'
+import HeaderComponent from '@/components/Header.vue'
+import TarifComponent from '@/components/Tarif.vue'
+import FooterComponent from '@/components/Footer.vue'
 
 export default {
   name: 'TariffsPage',

@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import HeaderComponent from '@/components/header.vue'
-import ContactComponent from '@/components/contact.vue'
-import FooterComponent from '@/components/footer.vue'
+import HeaderComponent from '@/components/Header.vue'
+import ContactComponent from '@/components/Contact.vue'
+import FooterComponent from '@/components/Footer.vue'
 
 export default {
   name: 'ContactPage',

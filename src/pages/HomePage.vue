@@ -15,14 +15,14 @@
 </template>
 
 <script>
-import HeaderComponent from '@/components/header.vue'
-import HeroComponent from '@/components/hero.vue'
-import AboutComponent from '@/components/about.vue'
-import MyPortfolioComponent from '@/components/my-portfolio.vue'
-import StepComponent from '@/components/step.vue'
-import TarifComponent from '@/components/tarif.vue'
-import ContactComponent from '@/components/contact.vue'
-import FooterComponent from '@/components/footer.vue'
+import HeaderComponent from '@/components/Header.vue'
+import HeroComponent from '@/components/Hero.vue'
+import AboutComponent from '@/components/About.vue'
+import MyPortfolioComponent from '@/components/MyPortfolio.vue'
+import StepComponent from '@/components/Step.vue'
+import TarifComponent from '@/components/Tarif.vue'
+import ContactComponent from '@/components/Contact.vue'
+import FooterComponent from '@/components/Footer.vue'
 
 export default {
   name: 'HomePage',
