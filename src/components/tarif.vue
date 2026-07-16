@@ -1,80 +1,49 @@
-<!-- src/components/tarif.vue -->
 <template>
   <section class="tarif-section" id="tariffs">
     <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Мои тарифы</h2>
+      <h2 class="section-title">Мои тарифы</h2>
+
+      <div class="carousel-container">
+        <button class="carousel-btn" @click="prevSlide">‹</button>
+        
+        <div class="carousel-track-wrapper">
+          <div class="carousel-track" :style="trackStyle">
+            <div 
+              v-for="tariff in tariffs" 
+              :key="tariff.id"
+              class="tarif-card"
+              @click="goToDetail(tariff.id)"
+            >
+              <div class="tarif-header">
+                <h3>{{ tariff.name }}</h3>
+                <div class="price">{{ tariff.price }}</div>
+              </div>
+              
+              <ul class="tarif-features">
+                <li v-for="(f, i) in tariff.features" :key="i">
+                  <span>{{ f.label }}</span>
+                  <span>{{ f.value }}</span>
+                </li>
+              </ul>
+              
+              <button class="btn-detail" @click.stop="goTo404(tariff.name)">
+                Подробнее
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <button class="carousel-btn" @click="nextSlide">›</button>
       </div>
 
-      <div class="tarif-grid">
-        <!-- Тариф 1: Женский портрет -->
-        <div class="tarif-card">
-          <div class="tarif-header">
-            <h3 class="tarif-name">Женский портрет</h3>
-            <div class="tarif-price">
-              <span class="price">25 000 ₽</span>
-            </div>
-          </div>
-          
-          <div class="tarif-body">
-            <ul class="tarif-features">
-              <li><span class="feature-label">Продолжительность:</span> <span class="feature-value">2 часа</span></li>
-              <li><span class="feature-label">Количество фото:</span> <span class="feature-value">30-40</span></li>
-              <li><span class="feature-label">Прическа и макияж:</span> <span class="feature-value">Да</span></li>
-              <li><span class="feature-label">Прокат образа:</span> <span class="feature-value">Нет</span></li>
-            </ul>
-          </div>
-          
-          <div class="tarif-footer">
-            <button class="btn-order" @click="goToDetail('женский-портрет')">Подробнее</button>
-          </div>
-        </div>
-
-        <!-- Тариф 2: Прогулочная съёмка -->
-        <div class="tarif-card">
-          <div class="tarif-header">
-            <h3 class="tarif-name">Прогулочная съёмка</h3>
-            <div class="tarif-price">
-              <span class="price">15 000 ₽</span>
-            </div>
-          </div>
-          
-          <div class="tarif-body">
-            <ul class="tarif-features">
-              <li><span class="feature-label">Продолжительность:</span> <span class="feature-value">1 час</span></li>
-              <li><span class="feature-label">Количество фото:</span> <span class="feature-value">20-30</span></li>
-              <li><span class="feature-label">Прическа и макияж:</span> <span class="feature-value">Да</span></li>
-              <li><span class="feature-label">Прокат образа:</span> <span class="feature-value">Да</span></li>
-            </ul>
-          </div>
-          
-          <div class="tarif-footer">
-            <button class="btn-order" @click="goToDetail('прогулочная-съёмка')">Подробнее</button>
-          </div>
-        </div>
-
-        <!-- Тариф 3: Семейная съёмка -->
-        <div class="tarif-card">
-          <div class="tarif-header">
-            <h3 class="tarif-name">Семейная съёмка</h3>
-            <div class="tarif-price">
-              <span class="price">35 000 ₽</span>
-            </div>
-          </div>
-          
-          <div class="tarif-body">
-            <ul class="tarif-features">
-              <li><span class="feature-label">Продолжительность:</span> <span class="feature-value">2 часа</span></li>
-              <li><span class="feature-label">Количество фото:</span> <span class="feature-value">40-50</span></li>
-              <li><span class="feature-label">Прическа и макияж:</span> <span class="feature-value">Да</span></li>
-              <li><span class="feature-label">Прокат образа:</span> <span class="feature-value">Нет</span></li>
-            </ul>
-          </div>
-          
-          <div class="tarif-footer">
-            <button class="btn-order" @click="goToDetail('семейная-съёмка')">Подробнее</button>
-          </div>
-        </div>
+      <div class="carousel-indicators">
+        <button 
+          v-for="(_, i) in tariffs" 
+          :key="i"
+          class="dot-indicator"
+          :class="{ active: currentSlide === i }"
+          @click="goToSlide(i)"
+        ></button>
       </div>
     </div>
   </section>
@@ -83,13 +52,69 @@
 <script>
 export default {
   name: 'TarifComponent',
+  data: () => ({
+    currentSlide: 0,
+    tariffs: [
+      {
+        id: '1',
+        name: 'Женский портрет',
+        price: '25 000 ₽',
+        features: [
+          { label: 'Продолжительность', value: '2 часа' },
+          { label: 'Количество фото', value: '30-40' },
+          { label: 'Прическа и макияж', value: 'Да' },
+          { label: 'Прокат образа', value: 'Нет' }
+        ]
+      },
+      {
+        id: '2',
+        name: 'Прогулочная съёмка',
+        price: '15 000 ₽',
+        features: [
+          { label: 'Продолжительность', value: '1 час' },
+          { label: 'Количество фото', value: '20-30' },
+          { label: 'Прическа и макияж', value: 'Да' },
+          { label: 'Прокат образа', value: 'Да' }
+        ]
+      },
+      {
+        id: '3',
+        name: 'Семейная съёмка',
+        price: '35 000 ₽',
+        features: [
+          { label: 'Продолжительность', value: '2 часа' },
+          { label: 'Количество фото', value: '40-50' },
+          { label: 'Прическа и макияж', value: 'Да' },
+          { label: 'Прокат образа', value: 'Нет' }
+        ]
+      }
+    ]
+  }),
+  computed: {
+    trackStyle() {
+      return {
+        transform: `translateX(-${this.currentSlide * 33.333}%)`,
+        transition: 'transform 0.5s ease'
+      }
+    }
+  },
   methods: {
-    goToDetail(tariff) {
-      // Переход на страницу детального тарифа
-      this.$router.push({
-        path: '/tariff-detail',
-        query: { tariff: tariff }
-      })
+    nextSlide() {
+      this.currentSlide = (this.currentSlide + 1) % this.tariffs.length
+    },
+    prevSlide() {
+      this.currentSlide = this.currentSlide === 0 
+        ? this.tariffs.length - 1 
+        : this.currentSlide - 1
+    },
+    goToSlide(i) { this.currentSlide = i },
+    goTo404(name) {
+      console.log(`404: ${name}`)
+      this.$router.push({ name: 'NotFound' })
+    },
+    goToDetail(id) {
+      console.log(`Детали: ${id}`)
+      this.$router.push(`/tariff-detail/${id}`)
     }
   }
 }
@@ -99,205 +124,156 @@ export default {
 .tarif-section {
   padding: 80px 20px;
   background: #fcfaf8;
-  font-family: 'Gilroy', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* Заголовок - выравнивание по левому краю */
-.section-header {
-  text-align: left;
-  margin-bottom: 50px;
-}
-
-.section-title {
   font-family: 'Gilroy', sans-serif;
-  font-weight: 500;
+}
+.container { max-width: 1200px; margin: 0 auto; }
+.section-title {
   font-size: 80px;
-  line-height: 100%;
-  letter-spacing: 0%;
+  font-weight: 500;
   color: #2c2420;
-  margin: 0;
+  margin: 0 0 50px;
 }
 
-/* Сетка тарифов */
-.tarif-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.carousel-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+.carousel-track-wrapper { flex: 1; overflow: hidden; }
+.carousel-track {
+  display: flex;
   gap: 30px;
-  margin-bottom: 40px;
+  transition: transform 0.5s ease;
 }
 
-/* Карточка тарифа - без скругления */
 .tarif-card {
+  flex: 0 0 calc(33.333% - 20px);
   background: #fff;
-  border-radius: 0;
   padding: 40px 30px 30px;
-  box-shadow: 0 4px 20px rgba(44, 36, 32, 0.06);
-  transition: all 0.3s ease;
-  position: relative;
+  box-shadow: 0 4px 20px rgba(44,36,32,0.06);
+  transition: all .3s;
   display: flex;
   flex-direction: column;
+  min-height: 400px;
+  cursor: pointer;
 }
-
 .tarif-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 16px 48px rgba(44, 36, 32, 0.1);
+  box-shadow: 0 16px 48px rgba(44,36,32,0.1);
 }
 
-/* Заголовок тарифа - по центру */
 .tarif-header {
   text-align: center;
   padding-bottom: 16px;
   border-bottom: 1px solid #f0ebe7;
 }
-
-.tarif-name {
-  font-family: 'Gilroy', sans-serif;
-  font-weight: 500;
+.tarif-header h3 {
   font-size: 24px;
-  color: #2c2420;
-  margin: 0 0 4px 0;
-}
-
-.tarif-price {
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
-  gap: 4px;
-}
-
-.tarif-price .price {
-  font-family: 'Gilroy', sans-serif;
   font-weight: 500;
-  font-size: 28px;
   color: #2c2420;
+  margin: 0 0 4px;
 }
-
-/* Тело тарифа - характеристики */
-.tarif-body {
-  flex: 1;
-  padding: 20px 0;
+.price {
+  font-size: 28px;
+  font-weight: 500;
+  color: #2c2420;
 }
 
 .tarif-features {
   list-style: none;
-  padding: 0;
+  padding: 20px 0;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  flex: 1;
 }
-
 .tarif-features li {
-  font-family: 'Gilroy', sans-serif;
-  font-weight: 500;
-  font-size: 15px;
-  color: #4f4540;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  line-height: 1.4;
-}
-
-.feature-label {
-  color: #4f4540;
-}
-
-.feature-value {
-  color: #2c2420;
+  font-size: 15px;
   font-weight: 500;
+  color: #4f4540;
+  padding: 4px 0;
 }
+.tarif-features li span:last-child { color: #2c2420; }
 
-/* Футер тарифа - кнопка */
-.tarif-footer {
-  padding-top: 20px;
-  border-top: 1px solid #f0ebe7;
-  display: flex;
-  justify-content: center;
-}
-
-.btn-order {
-  width: 296px;
+.btn-detail {
+  width: 100%;
+  max-width: 296px;
   height: 50px;
-  padding: 0;
+  margin: 0 auto;
   background: transparent;
   color: #2c2420;
   border: 1px solid #2c2420;
   border-radius: 10px;
-  font-family: 'Gilroy', sans-serif;
-  font-weight: 500;
   font-size: 16px;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all .3s;
 }
-
-.btn-order:hover {
+.btn-detail:hover {
   background: #2c2420;
   color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(44, 36, 32, 0.15);
 }
 
-/* Адаптив */
+.carousel-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #d4c5bc;
+  background: transparent;
+  color: #2c2420;
+  font-size: 28px;
+  cursor: pointer;
+  transition: all .3s;
+  flex-shrink: 0;
+}
+.carousel-btn:hover {
+  background: #2c2420;
+  color: #fff;
+  border-color: #2c2420;
+  transform: scale(1.1);
+}
+
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+.dot-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #d4c5bc;
+  background: transparent;
+  cursor: pointer;
+  transition: all .3s;
+  padding: 0;
+}
+.dot-indicator.active {
+  background: #2c2420;
+  border-color: #2c2420;
+  transform: scale(1.2);
+}
+.dot-indicator:hover { transform: scale(1.1); }
+
 @media (max-width: 1024px) {
-  .tarif-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .section-title {
-    font-size: 60px;
-  }
-  
-  .btn-order {
-    width: 100%;
-    max-width: 296px;
-  }
+  .section-title { font-size: 60px; }
+  .tarif-card { flex: 0 0 calc(50% - 15px); }
+  .carousel-btn { width: 40px; height: 40px; font-size: 22px; }
 }
-
 @media (max-width: 700px) {
-  .tarif-section {
-    padding: 50px 16px;
-  }
-  
-  .section-title {
-    font-size: 48px;
-  }
-  
-  .tarif-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-  
-  .tarif-card {
-    padding: 30px 20px 24px;
-  }
-  
-  .tarif-price .price {
-    font-size: 24px;
-  }
-  
-  .tarif-name {
-    font-size: 20px;
-  }
-  
-  .btn-order {
-    width: 100%;
-    max-width: 296px;
-  }
+  .tarif-section { padding: 50px 16px; }
+  .section-title { font-size: 48px; }
+  .tarif-card { flex: 0 0 100%; min-height: 350px; padding: 30px 20px; }
+  .price { font-size: 24px; }
+  .tarif-header h3 { font-size: 20px; }
+  .btn-detail { max-width: 100%; }
+  .carousel-btn { width: 36px; height: 36px; font-size: 18px; }
 }
-
 @media (max-width: 480px) {
-  .section-title {
-    font-size: 36px;
-  }
-  
-  .btn-order {
-    width: 100%;
-    max-width: 100%;
-  }
+  .section-title { font-size: 36px; }
+  .carousel-container { gap: 10px; }
+  .carousel-btn { width: 32px; height: 32px; font-size: 16px; }
 }
 </style>

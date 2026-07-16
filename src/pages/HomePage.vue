@@ -38,7 +38,7 @@ export default {
   },
   data() {
     return {
-      photographerImage: null // или require('@/assets/images/photographer.jpg')
+      photographerImage: null  
     }
   },
   methods: {

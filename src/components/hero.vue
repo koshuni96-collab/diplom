@@ -1,4 +1,4 @@
-<!-- src/components/hero.vue -->
+<!-- hero.vue -->
 <template>
   <section class="hero" id="hero">
     <div class="hero-bg">
@@ -7,8 +7,6 @@
       </div>
       <div class="hero-overlay"></div>
     </div>
-
-    <!-- Блок с текстом поверх фона -->
     <div class="hero-text-block">
       <div class="hero-content">
         <h1 class="hero-title">
@@ -36,7 +34,7 @@ export default {
 </script>
 
 <style scoped>
-/* ===== ОСНОВНЫЕ СТИЛИ ===== */
+
 .hero {
   position: relative;
   width: 100%;
@@ -52,7 +50,7 @@ export default {
   background: #1a1a1a;
 }
 
-/* ===== КОНТЕЙНЕР ДЛЯ ФОНА ===== */
+/*  ФОН */
 .hero-bg {
   position: absolute;
   top: 0;
@@ -95,7 +93,7 @@ export default {
   pointer-events: none;
 }
 
-/* ===== БЛОК С ТЕКСТОМ ===== */
+/* =ТЕКСТ= */
 .hero-text-block {
   position: relative;
   z-index: 2;
@@ -194,7 +192,7 @@ export default {
   box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3);
 }
 
-/* ===== АДАПТИВ ===== */
+/* == АДАПТИВ == */
 @media (max-width: 1024px) {
   .hero-text-block {
     margin-left: 40px;

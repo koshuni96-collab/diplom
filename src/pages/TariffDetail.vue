@@ -1,5 +1,5 @@
 
-<!-- src/pages/tariff-detail.vue -->
+<!-- /tariffdetail.vue -->
 <template>
   <div>
     <HeaderComponent />

@@ -217,7 +217,7 @@ export default {
   margin-left: 3px;
 }
 
-/* Адаптивность для заголовка */
+/* Адаптивность  */
 @media (max-width: 1200px) {
   .header h1 {
     font-size: 60px;

@@ -3,10 +3,8 @@
     <h2 class="steps-title">Этапы работы</h2>
        
     <div class="steps-wrapper">
-      <!-- Левая часть: сетка 2x2 с этапами -->
-      <div class="steps-grid">
-        <!-- Шаг 1 -->
-        <div class="step-card">
+            <div class="steps-grid">
+               <div class="step-card">
           <div class="step-header">
             <span class="step-number">1.</span>
             <h3 class="step-name">Знакомство</h3>
@@ -16,8 +14,7 @@
           </p>
         </div>
 
-        <!-- Шаг 2 -->
-        <div class="step-card">
+               <div class="step-card">
           <div class="step-header">
             <span class="step-number">2.</span>
             <h3 class="step-name">Концепция</h3>
@@ -27,8 +24,7 @@
           </p>
         </div>
 
-        <!-- Шаг 3 -->
-        <div class="step-card">
+               <div class="step-card">
           <div class="step-header">
             <span class="step-number">3.</span>
             <h3 class="step-name">Съемка</h3>
@@ -38,8 +34,7 @@
           </p>
         </div>
 
-        <!-- Шаг 4 -->
-        <div class="step-card">
+               <div class="step-card">
           <div class="step-header">
             <span class="step-number">4.</span>
             <h3 class="step-name">Фото</h3>
@@ -69,7 +64,6 @@ export default {
 </script>
 
 <style scoped>
-/* ✅ @font-face УДАЛЕН - шрифт подключается глобально через global.css */
 
 .steps-section {
   max-width: 1200px;
@@ -87,17 +81,15 @@ export default {
   color: #1a1a2e;
   margin-bottom: 3rem;
   text-align: left;
-  /* Убрано подчеркивание */
-}
+ }
 
-/* ===== ОСНОВНОЙ КОНТЕЙНЕР ===== */
 .steps-wrapper {
   display: flex;
   gap: 2rem;
   align-items: stretch;
 }
 
-/* ===== ЛЕВАЯ ЧАСТЬ: СЕТКА 2x2 ===== */
+
 .steps-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -105,7 +97,7 @@ export default {
   flex: 2;
 }
 
-/* ===== ПРАВАЯ ЧАСТЬ: ФОТО ===== */
+
 .steps-image {
   flex: 1;
   min-width: 200px;
@@ -117,14 +109,12 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 0; /* Убрано скругление */
-}
+  }
 
 /* ===== КАРТОЧКИ ЭТАПОВ ===== */
 .step-card {
   background: white;
-  border-radius: 0; /* Убрано скругление */
-  padding: 2rem 1.5rem;
+    padding: 2rem 1.5rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid #f0f0f0;
@@ -135,7 +125,7 @@ export default {
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
 }
 
-/* ===== ЗАГОЛОВОК В ОДНУ СТРОКУ ===== */
+
 .step-header {
   display: flex;
   align-items: baseline;

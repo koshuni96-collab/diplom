@@ -47,6 +47,7 @@ export default {
   font-weight: 700;
   color: #d4b8a8;
   margin: 0;
+  line-height: 1;
 }
 
 .not-found-content h2 {
@@ -62,6 +63,7 @@ export default {
 }
 
 .btn-home {
+  display: inline-block;
   padding: 14px 40px;
   background: #2c2420;
   color: #fff;

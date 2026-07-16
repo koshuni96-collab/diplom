@@ -1,7 +1,7 @@
 <template>
   <div class="tariffs-page">
     <HeaderComponent />
-    <TarifComponent @order-click="handleOrder" />
+    <TarifComponent @order-click="handleOrder" />  <!-- Здесь может быть проблема -->
     <FooterComponent />
   </div>
 </template>

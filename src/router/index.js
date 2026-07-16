@@ -4,6 +4,13 @@ import PortfolioPage from '@/pages/PortfolioPage.vue'
 import TariffsPage from '@/pages/TariffsPage.vue'
 import ContactPage from '@/pages/ContactPage.vue'
 
+// Временные данные для проверки
+const tariffs = [
+  { id: '1', name: 'Женский портрет' },
+  { id: '2', name: 'Прогулочная съёмка' },
+  { id: '3', name: 'Семейная съёмка' }
+]
+
 const routes = [
   {
     path: '/',
@@ -25,12 +32,16 @@ const routes = [
     name: 'Contact',
     component: ContactPage
   },
-  
   {
-    path: '/tariff-detail',
+    path: '/tariff-detail/:id',
     name: 'TariffDetail',
-    component: () => import('@/pages/TariffDetail.vue')
+    component: () => import('@/pages/TariffDetail.vue'),
+    beforeEnter: (to, from, next) => {
+      const exists = tariffs.some(t => String(t.id) === String(to.params.id))
+      exists ? next() : next({ name: 'NotFound' })
+    }
   },
+  // ВАЖНО: маршрут 404 должен быть ПОСЛЕДНИМ!
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
@@ -43,17 +54,9 @@ const router = createRouter({
   routes,
   scrollBehavior(to, from, savedPosition) {
     if (to.hash) {
-      return {
-        el: to.hash,
-        behavior: 'smooth',
-        top: 80
-      }
+      return { el: to.hash, behavior: 'smooth', top: 80 }
     }
-    if (savedPosition) {
-      return savedPosition
-    } else {
-      return { top: 0 }
-    }
+    return savedPosition || { top: 0 }
   }
 })
 

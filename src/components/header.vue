@@ -99,7 +99,7 @@ export default {
   color: #eae8e7 !important;
 }
 
-/* ===== БУРГЕР-МЕНЮ ===== */
+/* =МЕНЮ = */
 .burger-btn {
   display: none;
   flex-direction: column;
